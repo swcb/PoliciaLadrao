@@ -42,25 +42,17 @@ while x:
         pygame.key.get_repeat()
         if event.type == pygame.QUIT:
             x = False
-        if event.type == pygame.KEYDOWN:#Movimentacao com Bordas
-            if event.key == pygame.K_UP:
-                if pos_y - 261/13 <= 0:
-                    break
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP and not (pos_y - 261/13 <= 0):
                 jog1rect = jog1rect.move(up)
                 pos_y = pos_y - 261/13
-            if event.key == pygame.K_DOWN:
-                if pos_y + 261/13 > 261 - (2*261/13):
-                    break
+            if event.key == pygame.K_DOWN and not(pos_y + 261/13 > 261 - (2*261/13)):
                 jog1rect = jog1rect.move(down)
                 pos_y = pos_y + 261/13
-            if event.key == pygame.K_RIGHT:
-                if pos_x  >= 620 - (2*620/31):
-                    break
+            if event.key == pygame.K_RIGHT and not(pos_x  >= 620 - (2*620/31)):
                 jog1rect = jog1rect.move(dir)
                 pos_x = pos_x + 620/31
-            if event.key == pygame.K_LEFT:
-                if pos_x - 620/31 <  620/31:
-                    break
+            if event.key == pygame.K_LEFT and not (pos_x - 620/31 <  620/31):
                 jog1rect = jog1rect.move(esq)
                 pos_x = pos_x - 620/31
 
