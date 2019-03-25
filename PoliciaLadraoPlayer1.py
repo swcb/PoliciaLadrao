@@ -28,6 +28,8 @@ down = [0, 261/13]
 screen = pygame.display.set_mode(campo2)
 pygame.display.set_caption("PoliciaLadrao")
 black = 0, 0, 0
+pos_x = 620/31
+pos_y = 261/13
 campo2 = pygame.image.load("images\\campo2.png")
 camporect = campo2.get_rect().move([0, 0])
 jog1 = pygame.image.load("images\\pol.png")
@@ -40,17 +42,27 @@ while x:
         pygame.key.get_repeat()
         if event.type == pygame.QUIT:
             x = False
-        if event.type == pygame.KEYDOWN:
+        if event.type == pygame.KEYDOWN:#Movimentacao com Bordas
             if event.key == pygame.K_UP:
-                if jog1rect.move(up) > [620/31, 0]:
+                if pos_y - 261/13 <= 0:
                     break
                 jog1rect = jog1rect.move(up)
+                pos_y = pos_y - 261/13
             if event.key == pygame.K_DOWN:
+                if pos_y + 261/13 > 261 - (2*261/13):
+                    break
                 jog1rect = jog1rect.move(down)
+                pos_y = pos_y + 261/13
             if event.key == pygame.K_RIGHT:
+                if pos_x  >= 620 - (2*620/31):
+                    break
                 jog1rect = jog1rect.move(dir)
+                pos_x = pos_x + 620/31
             if event.key == pygame.K_LEFT:
+                if pos_x - 620/31 <  620/31:
+                    break
                 jog1rect = jog1rect.move(esq)
+                pos_x = pos_x - 620/31
 
 
     screen.fill(black)
