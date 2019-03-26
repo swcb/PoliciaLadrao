@@ -41,10 +41,12 @@ def main():
     pos_y = 261/13
     campo2 = pygame.image.load("images\\campo2.png")
     camporect = campo2.get_rect().move([0, 0])
-    jog1 = Objetos.pol()
-    moeda = Objetos.moeda()
+    jog1 = Objetos.ladrao()
     moedas = pygame.sprite.Group()
-    moedas.add(moeda)
+    for i in range (0,7):
+        moeda = Objetos.moeda(i, i)
+        moedas.add(moeda)
+    policia = Objetos.policia()
     x = True
     pygame.key.set_repeat(1, 50)
     while x:
@@ -70,16 +72,20 @@ def main():
             if pygame.sprite.collide_rect(jog1, moeda):
                 moeda.kill()
                 cont = cont + 1
+        if pygame.sprite.collide_rect(policia, jog1):
+            x =False
 
         screen.fill(black)
         screen.blit(campo2, camporect)
         for moeda in moedas:
             screen.blit(moeda.image,moeda.rect)
         screen.blit(jog1.image, jog1.rect)
+        screen.blit(policia.image,policia.rect)
         pygame.display.flip()
         relogio.tick(10)
 
 
     pygame.quit()
+    print(cont)
 
 main()
