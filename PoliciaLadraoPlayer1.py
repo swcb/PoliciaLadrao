@@ -3,12 +3,6 @@ import rpyc
 import Objetos
 import  numpy as np
 """
-LIXO
-    #jog1 = pygame.image.load("images\\pol.png")
-    #jog1rect = jog1.get_rect().move([620/31, 261/13])
-    #moeda = pygame.image.load("images\\moeda.png")
-    #moedarect = moeda.get_rect().move([(620/31)*3, 261/13])
-
 K_UP                  up arrow
 K_DOWN                down arrow
 K_RIGHT               right arrow
@@ -20,16 +14,19 @@ K_d           d       d
 car1rect = car1rect.move(speed)
 campo2 = 13 x 31.
 """
-linha = 620/31
-coluna = (261/13)
 
-def cria_Paredes(paredes):
-    for i in range (2,5):
-        parede = Objetos.wall(i*(620/31),2*(261/13))
-        paredes.add(parede)
 
-def block(pos_x, pos_y):
-    if pos_y - (261/13) == (261/13)*2 and pos_x == (3*620/31):
+#Verificacao da movimentacao do policial
+def block(px, py, campo):
+    if campo[py,px] == 1 or campo[py,px] == 2:
+        return True
+    else:
+        return False
+
+
+#Verificacao da movimentacao do ladrao
+def blockl(px, py, campo):
+    if campo[py, px] == 1 or campo[py, px] == 2:
         return True
     else:
         return False
@@ -50,20 +47,40 @@ def main():
     up = [0, -261 / 13]
     down = [0, 261 / 13]
 
-
+    #Tela e Campo
     screen = pygame.display.set_mode(campo2)
     pygame.display.set_caption("PoliciaLadrao")
     black = 0, 0, 0
-    pos_x = 620/31
-    pos_y = 261/13
     campo2 = pygame.image.load("images\\campo2.png")
     camporect = campo2.get_rect().move([0, 0])
+
+
+    #Posição inicial do jogador
+    #trocar para a chamada ao servidor que irá fornecer
+    #pos = a posicao usada para desenhar na tela
+    #p = posicao na matrix do campo para verificacao da movimentacao
+    pos_x = 620/31
+    pos_y = 261/13
+    px = 1
+    py = 1
+
+
+    #Campo em matriz para criar as paredes internas.
     campo = np.zeros((13,31))
+    campo[2::2,2::2] = 1
+    campo[2, 3] = campo[2, 19] = campo[2, 27] = 1
+    campo[1, 8] = campo[3, 22] = campo[5, 14] = campo[5, 20] = campo[11, 12] = 1
+    campo[4, 3] = campo[4, 13] = campo[4, 27] = 1
+    campo[6, 1] = campo[6, 7] = campo[6, 23] = campo[6, 29] = 1
+    campo[10, 1] = campo[10, 9] = campo[10, 13] = campo[10, 25] = campo[10, 29] = 1
+    campo[2, 1] = campo[2, 9] = campo[4, 23] = campo[4, 29] = campo[5, 16] = campo[6, 11] = 2
+    campo[7, 4] = campo[9, 18] = campo[10, 3] = campo[10, 11] = campo[10, 27] = 2
     print(campo)
 
-    paredes = pygame.sprite.Group()
-    cria_Paredes(paredes)
-
+    #Criacao do jogador e dos grupos
+    #deverá ser feita no servidor
+    #e o jogador recebera o seu sprite
+    #e todos os grupos
     jog1 = Objetos.ladrao()
     policia = Objetos.policia()
     jogadores = pygame.sprite.Group()
@@ -77,10 +94,17 @@ def main():
     for i in range (0,7):
         moeda = Objetos.moeda(i, i)
         moedas.add(moeda)
-    #posicao = pos_x,pos_y
+
+    #Contador de moedas e condicao para fim
+    #o contador sera guardado no servidor
     x = True
     cont = 0
+
+    #repeticao das teclas
+    #em mls (pelo menos o segundo)
     pygame.key.set_repeat(1, 50)
+
+
     while x:
         for event in pygame.event.get():
             pygame.key.get_repeat()
@@ -88,34 +112,47 @@ def main():
                 x = False
             if event.type == pygame.KEYDOWN:
 
-                if event.key == pygame.K_UP and not (pos_y - 261/13) <= 0 and not block(pos_x,pos_y):
+                if event.key == pygame.K_UP and not (pos_y - 261/13) <= 0 and not block(px,py-1,campo):
                     jog1.rect = jog1.rect.move(up)
+                    py = py - 1
                     pos_y = pos_y - 261/13
-                if event.key == pygame.K_DOWN and not(pos_y + 261/13 > 261 - (2*261/13)):
+                if event.key == pygame.K_DOWN and not(pos_y + 261/13 > 261 - (2*261/13)) and not block(px,py+1,campo):
                     jog1.rect = jog1.rect.move(down)
+                    py = py + 1
                     pos_y = pos_y + 261/13
-                if event.key == pygame.K_RIGHT and not(pos_x  >= 620 - (2*620/31)):
+                if event.key == pygame.K_RIGHT and not(pos_x  >= 620 - (2*620/31)) and not block(px+1,py,campo):
                     jog1.rect = jog1.rect.move(dir)
+                    px = px + 1
                     pos_x = pos_x + 620/31
-                if event.key == pygame.K_LEFT and not (pos_x - 620/31 <  620/31):
+                if event.key == pygame.K_LEFT and not (pos_x - 620/31 <  620/31) and not block(px-1,py,campo):
                     jog1.rect = jog1.rect.move(esq)
+                    px = px - 1
                     pos_x = pos_x - 620/31
 
+        #Verifica se o jogador passou por uma moeda
+        #O servidor tem q fazer isso verificando
+        #se algum ladrao passou por moeda
         for moeda in moedas:
             if pygame.sprite.collide_rect(jog1, moeda):
                 moeda.kill()
                 cont = cont + 1
+
+
+        #Verifica se algum larao colidiu com
+        #algum policial
         for ladrao in ladroes:
             if pygame.sprite.spritecollide(ladrao,policias,False):
                 cont = cont + 1
 
+
+        #Desenho da tela
         screen.fill(black)
         screen.blit(campo2, camporect)
-        for moeda in moedas:
-            screen.blit(moeda.image,moeda.rect)
+        #for moeda in moedas:
+           # screen.blit(moeda.image,moeda.rect)
         #screen.blit(jog1.image, jog1.rect)
-        for jogador in jogadores:
-            screen.blit(jogador.image,jogador.rect)
+        #for jogador in jogadores:
+        screen.blit(jog1.image,jog1.rect)
         pygame.display.flip()
         relogio.tick(10)
 
