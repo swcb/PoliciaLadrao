@@ -58,6 +58,8 @@ def main():
     pos_y = 261/13
     campo2 = pygame.image.load("images\\campo2.png")
     camporect = campo2.get_rect().move([0, 0])
+    campo = np.zeros((13,31))
+    print(campo)
 
     paredes = pygame.sprite.Group()
     cria_Paredes(paredes)
@@ -99,15 +101,13 @@ def main():
                     jog1.rect = jog1.rect.move(esq)
                     pos_x = pos_x - 620/31
 
-        #for moeda in moedas:
-         #   if pygame.sprite.collide_rect(jog1, moeda):
-          #      moeda.kill()
+        for moeda in moedas:
+            if pygame.sprite.collide_rect(jog1, moeda):
+                moeda.kill()
                 cont = cont + 1
         for ladrao in ladroes:
-            if pygame.sprite.spritecollide(ladrao,policias,True):
+            if pygame.sprite.spritecollide(ladrao,policias,False):
                 cont = cont + 1
-                #policia.kill()
-            #x =False
 
         screen.fill(black)
         screen.blit(campo2, camporect)
