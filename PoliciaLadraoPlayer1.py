@@ -74,7 +74,6 @@ def main():
     campo[10, 1] = campo[10, 9] = campo[10, 13] = campo[10, 25] = campo[10, 29] = 1
     campo[2, 1] = campo[2, 9] = campo[4, 23] = campo[4, 29] = campo[5, 16] = campo[6, 11] = 2
     campo[7, 4] = campo[9, 18] = campo[10, 3] = campo[10, 11] = campo[10, 27] = 2
-    print(campo)
 
     #Criacao do jogador e dos grupos
     #deverá ser feita no servidor
@@ -90,6 +89,7 @@ def main():
     for i in range (0,7):
         moeda = Objetos.moeda(i, i)
         moedas.add(moeda)
+        print(moeda.rect)
 
     #Contador de moedas e condicao para fim
     #o contador sera guardado no servidor
@@ -156,10 +156,19 @@ def main():
         #Verifica se o jogador passou por uma moeda
         #O servidor tem q fazer isso verificando
         #se algum ladrao passou por moeda
+        aux = conn.root.Killmoeda
+        print(aux)
+        for moeda in moedas:
+            if (moeda.rect == aux):
+                moeda.kill()
+                cont = cont + 1
+
         for moeda in moedas:
             if pygame.sprite.collide_rect(jog1, moeda):
                 moeda.kill()
                 cont = cont + 1
+                conn.root.setKillmoeda(moeda.rect)
+
 
 
         #Verifica se algum larao colidiu com

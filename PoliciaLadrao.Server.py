@@ -48,6 +48,10 @@ class policiaLadraoServidor(rpyc.Service):
             return True
         except:
             return False
+
+    def exposed_setKillmoeda(self, moeda):
+        self.exposed_Killmoeda = moeda
+        
 '''
     #Verifica se a posição que o jogador
     #deseja ir é permitida
