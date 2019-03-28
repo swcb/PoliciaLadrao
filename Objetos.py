@@ -14,7 +14,7 @@ class moeda(pygame.sprite.Sprite):
     def __init__(self, x, y):
         # Call the parent class (Sprite) constructor
         pygame.sprite.Sprite.__init__(self)
-        self.rect = pygame.Rect((620/31)*3 * x, (261/13) * y, 16, 16)
+        self.rect = pygame.Rect((620/31)*x, (261/13)*y, 16, 16)
         self.image = pygame.image.load("images\\moeda.png")
 
 class policia(pygame.sprite.Sprite):

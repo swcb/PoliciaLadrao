@@ -1,53 +1,54 @@
+import pygame
 import rpyc
 import numpy as np
+import Objetos
 
 
 class policiaLadraoServidor(rpyc.Service):
 
     def __init__(self):
-        self.jogadorX = np.array([1, 1]) #guarda a posiçãoX dos jogadores
-        self.jogadorY = np.array([8, 2]) #guarda a posiçãoY dos jogadores
-        self.limites = (14, 10)
-        self.qtChaves = 0 #Variavel de Controle para o Fim do jogo e Atualização do Campo
-        self.chavesPega = [] #Guarda a Posição das chaves Pegas
-        self.campo = self.exposed_carregaCampo() #Guarda o Campo
-
+        self.jogadores = []
+        self.exposed_Killmoeda = ""
+        self.exposed_fim = False
+        self.jogador = -1
+        self.ladroes = 0
 
     def on_connect(self, conn):
         print('   ~Conectado')
         pass
 
     def on_disconnect(self, conn):
+        self.jogador = -1
+        self.jogadores = []
         print('   ~Desconectado')
         pass
 
-    #Cria o Campo e o Atualiza
-    #O campo é Fixo e é retirado dele
-    #as chaves ja pegas e em seguida
-    #eh atualizada a posição dos jogadores
-    def exposed_carregaCampo(self):
-        campo = np.ones((10,14), dtype=str)
-        campo[:, :] = ' '
-        campo[0, :] = campo[5, 2:5] = campo[9, :] = campo[:, 13] = campo[:, 0] = 'X'
-        campo[7, 6:10] = campo[7, 11:13] = campo[2:4, 1:2] = campo[4:7, 8] = 'X'
-        campo[3, 5] = campo[2, 3] = 'X'
-        campo[7:, 2] = 'X'
-        campo[1, 5] = campo[2, 9:11] = campo[5, 6] = campo[2, 12] = 'X'
-        campo[4, 10:] = 'X'
-        campo[7, 7] = campo[2, 2] = campo[5, 3] = campo[7, 12] = '/'
-        campo[3, 2] = campo[8, 12] = campo[1, 7] = campo[8, 5] = campo[7, 1] = campo[6, 10] = campo[2, 11] = 'C'
-        for n in range(0, len(self.chavesPega)):
-            if n % 2 == 0:
-                campo[self.chavesPega[n], self.chavesPega[n+1]] = ' '
-        campo[self.jogadorX[0], self.jogadorY[0]] = 'L'
-        campo[self.jogadorX[1], self.jogadorY[1]] = 'P'
-        self.campo = campo
-        return campo
+    def exposed_getIndole(self):
+        print(len(self.jogadores))
+        if (len(self.jogadores) % 2 == 1):
+            return "policia"
+        else:
+            self.ladroes += 1
+            return "policia"
 
-    #Manda o campo para o Cliente
-    def exposed_getCampo(self):
-        return self.campo
+    def exposed_getCredenciais(self, jog, indole):
+        self.jogador += 1
+        obj = {'posicao': jog, 'indole': indole, 'vivo': True}
+        self.jogadores.append(obj)
+        print(jog)
+        print(self.jogadores)
+        return self.jogador
 
+    def exposed_getJogadores(self):
+        return self.jogadores
+
+    def exposed_putJogador(self, indice, new):
+        try:
+            self.jogadores[indice]['posicao'] = new
+            return True
+        except:
+            return False
+'''
     #Verifica se a posição que o jogador
     #deseja ir é permitida
     def verificaMov(self,x,y,z):
@@ -120,8 +121,7 @@ class policiaLadraoServidor(rpyc.Service):
         if self.verificaMov(self.jogadorX[z], self.jogadorY[z] + 1, z) == True:
             self.jogadorY[z] = self.jogadorY[z] + 1
             self.exposed_carregaCampo()
-
-
+'''
 
 
 if __name__ == "__main__":

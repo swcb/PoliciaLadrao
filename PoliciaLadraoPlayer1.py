@@ -26,14 +26,13 @@ def block(px, py, campo):
 
 #Verificacao da movimentacao do ladrao
 def blockl(px, py, campo):
-    if campo[py, px] == 1 or campo[py, px] == 2:
+    if campo[py, px] == 1:
         return True
     else:
         return False
 
 
 def main():
-    #c = rpyc.connect("localhost", 18861)
     pygame.mixer.pre_init(44100, 16, 2, 4096)
     pygame.mixer.__PYGAMEinit__
     pygame.init()
@@ -83,9 +82,6 @@ def main():
     #e todos os grupos
     jog1 = Objetos.ladrao()
     policia = Objetos.policia()
-    jogadores = pygame.sprite.Group()
-    jogadores.add(policia)
-    jogadores.add(jog1)
     ladroes = pygame.sprite.Group()
     policias = pygame.sprite.Group()
     ladroes.add(jog1)
@@ -104,31 +100,59 @@ def main():
     #em mls (pelo menos o segundo)
     pygame.key.set_repeat(1, 50)
 
-
+    conn = rpyc.connect("10.27.167.201", 18861)
+    indole = conn.root.getIndole()
+    print(indole)
+    indice = conn.root.getCredenciais(jog1.rect, indole)
+    print(indice)
     while x:
         for event in pygame.event.get():
             pygame.key.get_repeat()
             if event.type == pygame.QUIT:
                 x = False
             if event.type == pygame.KEYDOWN:
-
-                if event.key == pygame.K_UP and not (pos_y - 261/13) <= 0 and not block(px,py-1,campo):
-                    jog1.rect = jog1.rect.move(up)
-                    py = py - 1
-                    pos_y = pos_y - 261/13
-                if event.key == pygame.K_DOWN and not(pos_y + 261/13 > 261 - (2*261/13)) and not block(px,py+1,campo):
-                    jog1.rect = jog1.rect.move(down)
-                    py = py + 1
-                    pos_y = pos_y + 261/13
-                if event.key == pygame.K_RIGHT and not(pos_x  >= 620 - (2*620/31)) and not block(px+1,py,campo):
-                    jog1.rect = jog1.rect.move(dir)
-                    px = px + 1
-                    pos_x = pos_x + 620/31
-                if event.key == pygame.K_LEFT and not (pos_x - 620/31 <  620/31) and not block(px-1,py,campo):
-                    jog1.rect = jog1.rect.move(esq)
-                    px = px - 1
-                    pos_x = pos_x - 620/31
-
+                if(indole == 'ladrao'):
+                    if event.key == pygame.K_UP and not (pos_y - 261/13) <= 0 and not blockl(px,py-1,campo):
+                        jog1.rect = jog1.rect.move(up)
+                        py = py - 1
+                        pos_y = pos_y - 261/13
+                        conn.root.putJogador(indice, jog1.rect)
+                    if event.key == pygame.K_DOWN and not(pos_y + 261/13 > 261 - (2*261/13)) and not blockl(px,py+1,campo):
+                        jog1.rect = jog1.rect.move(down)
+                        py = py + 1
+                        pos_y = pos_y + 261/13
+                        conn.root.putJogador(indice, jog1.rect)
+                    if event.key == pygame.K_RIGHT and not(pos_x  >= 620 - (2*620/31)) and not blockl(px+1,py,campo):
+                        jog1.rect = jog1.rect.move(dir)
+                        px = px + 1
+                        pos_x = pos_x + 620/31
+                        conn.root.putJogador(indice, jog1.rect)
+                    if event.key == pygame.K_LEFT and not (pos_x - 620/31 <  620/31) and not blockl(px-1,py,campo):
+                        jog1.rect = jog1.rect.move(esq)
+                        px = px - 1
+                        pos_x = pos_x - 620/31
+                        conn.root.putJogador(indice, jog1.rect)
+                else:
+                    if event.key == pygame.K_UP and not (pos_y - 261/13) <= 0 and not block(px,py-1,campo):
+                        jog1.rect = jog1.rect.move(up)
+                        py = py - 1
+                        pos_y = pos_y - 261/13
+                        conn.root.putJogador(indice, jog1.rect)
+                    if event.key == pygame.K_DOWN and not(pos_y + 261/13 > 261 - (2*261/13)) and not block(px,py+1,campo):
+                        jog1.rect = jog1.rect.move(down)
+                        py = py + 1
+                        pos_y = pos_y + 261/13
+                        conn.root.putJogador(indice, jog1.rect)
+                    if event.key == pygame.K_RIGHT and not(pos_x  >= 620 - (2*620/31)) and not block(px+1,py,campo):
+                        jog1.rect = jog1.rect.move(dir)
+                        px = px + 1
+                        pos_x = pos_x + 620/31
+                        conn.root.putJogador(indice, jog1.rect)
+                    if event.key == pygame.K_LEFT and not (pos_x - 620/31 <  620/31) and not block(px-1,py,campo):
+                        jog1.rect = jog1.rect.move(esq)
+                        px = px - 1
+                        pos_x = pos_x - 620/31
+                        conn.root.putJogador(indice, jog1.rect)
         #Verifica se o jogador passou por uma moeda
         #O servidor tem q fazer isso verificando
         #se algum ladrao passou por moeda
@@ -144,20 +168,24 @@ def main():
             if pygame.sprite.spritecollide(ladrao,policias,False):
                 cont = cont + 1
 
-
         #Desenho da tela
         screen.fill(black)
         screen.blit(campo2, camporect)
-        #for moeda in moedas:
-           # screen.blit(moeda.image,moeda.rect)
-        #screen.blit(jog1.image, jog1.rect)
-        #for jogador in jogadores:
-        screen.blit(jog1.image,jog1.rect)
+        for moeda in moedas:
+            screen.blit(moeda.image,moeda.rect)
+        screen.blit(jog1.image, jog1.rect)
+        jogadores = conn.root.getJogadores()
+        for jogador in jogadores:
+            if(jogador['vivo']):
+                if(jogador['indole'] == 'ladrao'):
+                    screen.blit(jog1.image, jogador['posicao'])
+                else:
+                    screen.blit(policia.image, jogador['posicao'])
+            else:
+                print("errou")
         pygame.display.flip()
         relogio.tick(10)
 
-
     pygame.quit()
     print(cont)
-
 main()
