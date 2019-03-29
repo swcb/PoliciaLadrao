@@ -3,6 +3,7 @@ import rpyc
 import Objetos
 import  numpy as np
 """
+
 K_UP                  up arrow
 K_DOWN                down arrow
 K_RIGHT               right arrow
@@ -58,8 +59,8 @@ def main():
     #trocar para a chamada ao servidor que irá fornecer
     #pos = a posicao usada para desenhar na tela
     #p = posicao na matrix do campo para verificacao da movimentacao
-    pos_x = 620/31
-    pos_y = 261/13
+    pos_x = (620/31)
+    pos_y = (261/13)
     px = 1
     py = 1
 
@@ -79,17 +80,14 @@ def main():
     #deverá ser feita no servidor
     #e o jogador recebera o seu sprite
     #e todos os grupos
-    jog1 = Objetos.ladrao()
-    policia = Objetos.policia()
-    ladroes = pygame.sprite.Group()
-    policias = pygame.sprite.Group()
-    ladroes.add(jog1)
-    policias.add(policia)
+    ladrao = pygame.image.load("images\\ladrao.png")
+    policia = pygame.image.load("images\\pol.png")
     moedas = pygame.sprite.Group()
-    for i in range (0,7):
-        moeda = Objetos.moeda(i, i)
+    pos_xMoeda = [pos_x, pos_x*29, pos_x*18, pos_x*13, pos_x*10, pos_x*24, pos_x, pos_x*10]
+    pos_yMoeda = [pos_y*11, pos_y, pos_y*7, pos_y*11, pos_y*3, pos_y*5, pos_y*7, pos_y*9]
+    for i in range(0,7):
+        moeda = Objetos.moeda(pos_xMoeda[i],pos_yMoeda[i])
         moedas.add(moeda)
-        print(moeda.rect)
 
     #Contador de moedas e condicao para fim
     #o contador sera guardado no servidor
@@ -98,14 +96,23 @@ def main():
 
     #repeticao das teclas
     #em mls (pelo menos o segundo)
-    pygame.key.set_repeat(1, 50)
+
 
     conn = rpyc.connect("localhost", 18861)
     indole = conn.root.getIndole()
+    if indole == 'ladrao':
+        jog1 = Objetos.ladrao(pos_x,pos_y)
+        pygame.key.set_repeat(1, 150)
+    else:
+        jog1 = Objetos.policia(pos_x,pos_y)
+        pygame.key.set_repeat(1, 50)
     print(indole)
     indice = conn.root.getCredenciais(jog1.rect, indole)
     print(indice)
     derrota = False
+
+
+
     while not fim:
         for event in pygame.event.get():
             pygame.key.get_repeat()
@@ -192,9 +199,9 @@ def main():
         for jogador in jogadores:
             if(jogador['vivo']):
                 if(jogador['indole'] == 'ladrao'):
-                    screen.blit(jog1.image, jogador['posicao'])
+                    screen.blit(ladrao, jogador['posicao'])
                 else:
-                    screen.blit(policia.image, jogador['posicao'])
+                    screen.blit(policia, jogador['posicao'])
             else:
                 print("errou")
         pygame.display.flip()
@@ -202,11 +209,10 @@ def main():
 
 
 
-    if derrota == True:
-        de = pygame.image.load("images\derrota.png")
+    de = pygame.image.load("images\derrota.png")
+
+
     confirm = False
-
-
 
     while (not confirm):
         for event in pygame.event.get():
@@ -224,7 +230,7 @@ def main():
                 if (jogador['indole'] == 'ladrao'):
                     screen.blit(jog1.image, jogador['posicao'])
                 else:
-                    screen.blit(policia.image, jogador['posicao'])
+                    screen.blit(policia, jogador['posicao'])
             else:
                 print("errou")
         screen.blit(de, derect)

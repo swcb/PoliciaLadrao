@@ -26,10 +26,10 @@ class policiaLadraoServidor(rpyc.Service):
     def exposed_getIndole(self):
         print(len(self.jogadores))
         if (len(self.jogadores) % 2 == 1):
-            return "ladrao"
+            return "policia"
         else:
             self.ladroes += 1
-            return "policia"
+            return "ladrao"
 
     def exposed_getCredenciais(self, jog, indole):
         self.jogador += 1
