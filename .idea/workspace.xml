@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ed1517d1-815e-406a-88be-3b1e8c288879" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/PoliciaLadrao.Server.py" beforeDir="false" afterPath="$PROJECT_DIR$/PoliciaLadrao.Server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PoliciaLadraoPlayer1.py" beforeDir="false" afterPath="$PROJECT_DIR$/PoliciaLadraoPlayer1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-    </list>
+    <list default="true" id="ed1517d1-815e-406a-88be-3b1e8c288879" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,9 +9,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/trabalhoppc2$PoliciaLadraoParalelizada1.coverage" NAME="PoliciaLadraoParalelizada1 Coverage Results" MODIFIED="1553866500251" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pygame" />
     <SUITE FILE_PATH="coverage/trabalhoppc2$test.coverage" NAME="test Coverage Results" MODIFIED="1553865499635" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/TrabalhoFinal$PoliciaLadraoPlayer1.coverage" NAME="PoliciaLadraoPlayer1 Coverage Results" MODIFIED="1553473802137" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/trabalhoppc2$PoliciaLadrao_Server.coverage" NAME="PoliciaLadrao.Server Coverage Results" MODIFIED="1553865936476" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/trabalhoppc2$PoliciaLadrao_Server.coverage" NAME="PoliciaLadrao.Server Coverage Results" MODIFIED="1553867943420" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/trabalhoppc2$PoliciaLadraoParalelizada1__1_.coverage" NAME="PoliciaLadraoParalelizada1 (1) Coverage Results" MODIFIED="1553867945676" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/trabalhoppc2$PoliciaLadraoPlayer1.coverage" NAME="PoliciaLadraoPlayer1 Coverage Results" MODIFIED="1553865940758" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
@@ -23,8 +21,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PoliciaLadrao.Server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="34" column="27" lean-forward="true" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
+            <state relative-caret-position="187">
+              <caret line="20" column="31" lean-forward="true" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -32,11 +30,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PoliciaLadraoPlayer1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1243">
-              <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+            <state relative-caret-position="100">
+              <caret line="101" column="41" lean-forward="true" selection-start-line="101" selection-start-column="41" selection-end-line="101" selection-end-column="41" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
                 <element signature="e#419#512#0" />
@@ -71,10 +69,25 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../trabalho 1/main9.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="34" column="60" lean-forward="true" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="60" />
+            <state relative-caret-position="340">
+              <caret line="41" column="19" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/PoliciaLadraoParalelizada1.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="244">
+              <caret line="220" column="33" lean-forward="true" selection-start-line="220" selection-start-column="33" selection-end-line="220" selection-end-column="33" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+                <element signature="e#811#1000#0" />
+                <element signature="e#1002#1197#0" />
+                <element signature="e#1265#1616#0" />
               </folding>
             </state>
           </provider>
@@ -109,6 +122,8 @@
         <option value="$PROJECT_DIR$/PoliciaLadrao.Server.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/PoliciaLadraoPlayer1.py" />
+        <option value="$PROJECT_DIR$/pygame/PoliciaLadraoParalelizada1.py" />
+        <option value="$PROJECT_DIR$/PoliciaLadraoParalelizada1.py" />
       </list>
     </option>
   </component>
@@ -130,6 +145,11 @@
             <path>
               <item name="trabalhoppc2" type="b2602c69:ProjectViewProjectNode" />
               <item name="trabalhoppc2" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trabalhoppc2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trabalhoppc2" type="462c0819:PsiDirectoryNode" />
+              <item name="pygame" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -157,7 +177,51 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.PoliciaLadraoPlayer1">
+  <component name="RunManager" selected="Python.PoliciaLadraoParalelizada1 (1)">
+    <configuration name="PoliciaLadraoParalelizada1 (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="TrabalhoFinal" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PoliciaLadraoParalelizada1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="PoliciaLadraoParalelizada1" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="TrabalhoFinal" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pygame" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pygame/PoliciaLadraoParalelizada1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="PoliciaLadraoPlayer1" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="TrabalhoFinal" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -228,11 +292,15 @@
       <item itemvalue="Python.PoliciaLadraoPlayer1" />
       <item itemvalue="Python.test" />
       <item itemvalue="Python.PoliciaLadrao.Server" />
+      <item itemvalue="Python.PoliciaLadraoParalelizada1" />
+      <item itemvalue="Python.PoliciaLadraoParalelizada1 (1)" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.PoliciaLadraoPlayer1" />
+        <item itemvalue="Python.PoliciaLadraoParalelizada1 (1)" />
         <item itemvalue="Python.PoliciaLadrao.Server" />
+        <item itemvalue="Python.PoliciaLadraoParalelizada1" />
+        <item itemvalue="Python.PoliciaLadraoPlayer1" />
         <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
@@ -248,18 +316,18 @@
       <option name="presentableId" value="Default" />
       <updated>1553436318756</updated>
       <workItem from="1553436319932" duration="7737000" />
-      <workItem from="1553825370471" duration="11373000" />
+      <workItem from="1553825370471" duration="12994000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19110000" />
+    <option name="totallyTimeSpent" value="20731000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.20939597" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20939597" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -338,10 +406,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/PoliciaLadraoPlayer1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="101" column="41" lean-forward="true" selection-start-line="101" selection-start-column="41" selection-end-line="101" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#419#512#0" />
+            <element signature="e#585#658#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pygame/PoliciaLadraoParalelizada1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="77" column="48" lean-forward="true" selection-start-line="77" selection-start-column="48" selection-end-line="77" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#508#601#0" />
+            <element signature="e#674#747#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../trabalho 1/main7.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1173">
+          <caret line="3" column="29" lean-forward="true" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../trabalho 1/main3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-170">
+          <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../trabalho 1/main9.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="34" column="60" lean-forward="true" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="60" />
+        <state relative-caret-position="340">
+          <caret line="41" column="19" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
           </folding>
@@ -350,22 +459,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PoliciaLadrao.Server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="34" column="27" lean-forward="true" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
+        <state relative-caret-position="187">
+          <caret line="20" column="31" lean-forward="true" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PoliciaLadraoPlayer1.py">
+    <entry file="file://$PROJECT_DIR$/PoliciaLadraoParalelizada1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1243">
-          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+        <state relative-caret-position="244">
+          <caret line="220" column="33" lean-forward="true" selection-start-line="220" selection-start-column="33" selection-end-line="220" selection-end-column="33" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
-            <element signature="e#419#512#0" />
-            <element signature="e#585#658#0" />
+            <element signature="e#811#1000#0" />
+            <element signature="e#1002#1197#0" />
+            <element signature="e#1265#1616#0" />
           </folding>
         </state>
       </provider>
