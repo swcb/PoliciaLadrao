@@ -93,7 +93,7 @@ def main():
 
     #Contador de moedas e condicao para fim
     #o contador sera guardado no servidor
-    x = True
+    fim = False
     cont = 0
 
     #repeticao das teclas
@@ -105,7 +105,7 @@ def main():
     print(indole)
     indice = conn.root.getCredenciais(jog1.rect, indole)
     print(indice)
-    while x:
+    while not fim:
         for event in pygame.event.get():
             pygame.key.get_repeat()
             if event.type == pygame.QUIT:
@@ -157,14 +157,13 @@ def main():
         #O servidor tem q fazer isso verificando
         #se algum ladrao passou por moeda
         aux = conn.root.Killmoeda
-        print(aux)
         for moeda in moedas:
             if (moeda.rect == aux):
                 moeda.kill()
                 cont = cont + 1
 
         for moeda in moedas:
-            if pygame.sprite.collide_rect(jog1, moeda):
+            if pygame.sprite.collide_rect(jog1, moeda) and indole == 'ladrao':
                 moeda.kill()
                 cont = cont + 1
                 conn.root.setKillmoeda(moeda.rect)
@@ -173,9 +172,13 @@ def main():
 
         #Verifica se algum larao colidiu com
         #algum policial
-        for ladrao in ladroes:
-            if pygame.sprite.spritecollide(ladrao,policias,False):
-                cont = cont + 1
+        joga = conn.root.getJogadores()
+        minha = joga[indice]
+        if (indole == 'ladrao'):
+            for jog in joga:
+                if jog['posicao'] == minha['posicao'] and jog['indole'] == 'policia':
+                    conn.root.delJogador(indice)
+                    fim = True
 
         #Desenho da tela
         screen.fill(black)

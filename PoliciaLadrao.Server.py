@@ -26,7 +26,7 @@ class policiaLadraoServidor(rpyc.Service):
     def exposed_getIndole(self):
         print(len(self.jogadores))
         if (len(self.jogadores) % 2 == 1):
-            return "policia"
+            return "ladrao"
         else:
             self.ladroes += 1
             return "policia"
@@ -51,7 +51,10 @@ class policiaLadraoServidor(rpyc.Service):
 
     def exposed_setKillmoeda(self, moeda):
         self.exposed_Killmoeda = moeda
-        
+
+    def exposed_delJogador(self, indice):
+        self.jogadores[indice]['vivo'] = False
+
 '''
     #Verifica se a posição que o jogador
     #deseja ir é permitida
