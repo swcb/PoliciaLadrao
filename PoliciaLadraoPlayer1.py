@@ -1,7 +1,9 @@
 import pygame
 import rpyc
 import Objetos
-import  numpy as np
+import numpy as np
+import time
+
 """
 pos_x = 620/31*29
     pos_y = 261/13*11
@@ -20,6 +22,7 @@ car1rect = car1rect.move(speed)
 campo2 = 13 x 31.
 """
 
+fim = False
 
 #Verificacao da movimentacao do policial
 def block(px, py, campo):
@@ -35,6 +38,8 @@ def blockl(px, py, campo):
         return True
     else:
         return False
+
+
 
 
 def main():
@@ -95,7 +100,6 @@ def main():
 
     #Contador de moedas e condicao para fim
     #o contador sera guardado no servidor
-    fim = False
     cont = 0
 
     #repeticao das teclas
@@ -116,8 +120,9 @@ def main():
     derrota = False
 
 
-
-    while not fim:
+    global fim
+    while not  fim:
+        inicio = time.time()
         for event in pygame.event.get():
             pygame.key.get_repeat()
             if event.type == pygame.QUIT:
@@ -210,7 +215,8 @@ def main():
                 print("errou")
         pygame.display.flip()
         relogio.tick(10)
-
+        fim1 = time.time()
+        print('Tempo: ', fim1 - inicio)
 
 
     de = pygame.image.load("images\derrota.png")

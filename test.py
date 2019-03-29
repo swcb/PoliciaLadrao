@@ -1,7 +1,8 @@
 import pygame
 import rpyc
 import Objetos
-import  numpy as np
+import numpy as np
+import time
 """
 pos_x = 620/31*29
     pos_y = 261/13*11
@@ -118,6 +119,7 @@ def main():
 
 
     while not fim:
+        inicio = time.time()
         for event in pygame.event.get():
             pygame.key.get_repeat()
             if event.type == pygame.QUIT:
@@ -168,6 +170,7 @@ def main():
         #Verifica se o jogador passou por uma moeda
         #O servidor tem q fazer isso verificando
         #se algum ladrao passou por moeda
+
         aux = conn.root.Killmoeda
         for moeda in moedas:
             if (moeda.rect == aux):
@@ -209,6 +212,8 @@ def main():
                 print("errou")
         pygame.display.flip()
         relogio.tick(10)
+        fim1 = time.time()
+        print('Tempo: ', fim1 - inicio)
 
 
 

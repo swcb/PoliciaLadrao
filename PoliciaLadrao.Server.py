@@ -23,8 +23,6 @@ class policiaLadraoServidor(rpyc.Service):
         pass
 
     def on_disconnect(self, conn):
-        self.jogador = -1
-        self.jogadores = []
         print('   ~Desconectado')
         pass
 
