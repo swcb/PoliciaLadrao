@@ -100,16 +100,17 @@ def main():
     #em mls (pelo menos o segundo)
     pygame.key.set_repeat(1, 50)
 
-    conn = rpyc.connect("10.27.167.201", 18861)
+    conn = rpyc.connect("localhost", 18861)
     indole = conn.root.getIndole()
     print(indole)
     indice = conn.root.getCredenciais(jog1.rect, indole)
     print(indice)
+    derrota = False
     while not fim:
         for event in pygame.event.get():
             pygame.key.get_repeat()
             if event.type == pygame.QUIT:
-                x = False
+                fim = True
             if event.type == pygame.KEYDOWN:
                 if(indole == 'ladrao'):
                     if event.key == pygame.K_UP and not (pos_y - 261/13) <= 0 and not blockl(px,py-1,campo):
@@ -178,6 +179,7 @@ def main():
             for jog in joga:
                 if jog['posicao'] == minha['posicao'] and jog['indole'] == 'policia':
                     conn.root.delJogador(indice)
+                    derrota = True
                     fim = True
 
         #Desenho da tela
@@ -198,6 +200,38 @@ def main():
         pygame.display.flip()
         relogio.tick(10)
 
-    pygame.quit()
+
+
+    if derrota == True:
+        de = pygame.image.load("images\derrota.png")
+    confirm = False
+
+
+
+    while (not confirm):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                confirm = True
+            if event.type == pygame.KEYDOWN:
+                confirm = 1
+
+        derect = de.get_rect().move([0, 0])
+
+        screen.fill(black)
+        screen.blit(campo2, camporect)
+        for jogador in jogadores:
+            if (jogador['vivo']):
+                if (jogador['indole'] == 'ladrao'):
+                    screen.blit(jog1.image, jogador['posicao'])
+                else:
+                    screen.blit(policia.image, jogador['posicao'])
+            else:
+                print("errou")
+        screen.blit(de, derect)
+        pygame.display.flip()
+
+
+
+    #pygame.quit()
     print(cont)
 main()
