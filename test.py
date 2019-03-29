@@ -3,10 +3,11 @@ import rpyc
 import Objetos
 import  numpy as np
 """
- pos_x = 620/31*29
+pos_x = 620/31*29
     pos_y = 261/13*11
     px = 29
     py = 11
+
 K_UP                  up arrow
 K_DOWN                down arrow
 K_RIGHT               right arrow
@@ -62,8 +63,8 @@ def main():
     #trocar para a chamada ao servidor que irá fornecer
     #pos = a posicao usada para desenhar na tela
     #p = posicao na matrix do campo para verificacao da movimentacao
-    pos_x = 620 / 31 * 29
-    pos_y = 261 / 13 * 11
+    pos_x = (620 / 31) * 29
+    pos_y = (261 / 13) * 11
     px = 29
     py = 11
 
@@ -86,10 +87,10 @@ def main():
     ladrao = pygame.image.load("images\\ladrao.png")
     policia = pygame.image.load("images\\pol.png")
     moedas = pygame.sprite.Group()
-    pos_xMoeda = [pos_x, pos_x*29, pos_x*18, pos_x*13, pos_x*10, pos_x*24, pos_x, pos_x*10]
-    pos_yMoeda = [pos_y*11, pos_y, pos_y*7, pos_y*11, pos_y*3, pos_y*5, pos_y*7, pos_y*9]
+    pos_xmoeda = [pos_x, pos_x*29, pos_x*18, pos_x*13, pos_x*10, pos_x*24, pos_x, pos_x*10]
+    pos_ymoeda = [pos_y*11, pos_y, pos_y*7, pos_y*11, pos_y*3, pos_y*5, pos_y*7, pos_y*9]
     for i in range(0,7):
-        moeda = Objetos.moeda(pos_xMoeda[i],pos_yMoeda[i])
+        moeda = Objetos.moeda(pos_xmoeda[i], pos_ymoeda[i])
         moedas.add(moeda)
 
     #Contador de moedas e condicao para fim
@@ -197,7 +198,6 @@ def main():
         screen.blit(campo2, camporect)
         for moeda in moedas:
             screen.blit(moeda.image,moeda.rect)
-        screen.blit(jog1.image, jog1.rect)
         jogadores = conn.root.getJogadores()
         for jogador in jogadores:
             if(jogador['vivo']):

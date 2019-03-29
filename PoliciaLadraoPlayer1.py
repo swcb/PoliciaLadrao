@@ -3,6 +3,10 @@ import rpyc
 import Objetos
 import  numpy as np
 """
+pos_x = 620/31*29
+    pos_y = 261/13*11
+    px = 29
+    py = 11
 
 K_UP                  up arrow
 K_DOWN                down arrow
@@ -59,8 +63,8 @@ def main():
     #trocar para a chamada ao servidor que irá fornecer
     #pos = a posicao usada para desenhar na tela
     #p = posicao na matrix do campo para verificacao da movimentacao
-    pos_x = (620/31)
-    pos_y = (261/13)
+    pos_x = 620/31
+    pos_y = 261/13
     px = 1
     py = 1
 

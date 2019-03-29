@@ -12,6 +12,11 @@ class policiaLadraoServidor(rpyc.Service):
         self.exposed_fim = False
         self.jogador = -1
         self.ladroes = 0
+        self.exposed_pos_x = [620/31, (620 / 31) * 29]
+        self.exposed_pos_y = [261/13, (261 / 13) * 11]
+        self.exposed_x = [1,29]
+        self.exposed_y = [1,11]
+
 
     def on_connect(self, conn):
         print('   ~Conectado')
