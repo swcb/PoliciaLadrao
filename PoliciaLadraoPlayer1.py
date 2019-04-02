@@ -66,7 +66,7 @@ def main():
 
     #Tela de Vitoria e Derrota
     lose = Objetos.lose()
-    win = Objetos.win()
+    win = Objetos.win2()
 
     #Posição inicial do jogador
     #trocar para a chamada ao servidor que irá fornecer
@@ -276,7 +276,7 @@ def main():
                     c_sound += 1
                     time.sleep(1)
                     you_sound.play(0)
-                    time.sleep(1)
+                    time.sleep(0.7)
                     lose_sound.play(0)
             else:
                 screen.blit(win.image, win.rect)
@@ -285,7 +285,7 @@ def main():
                     c_sound += 1
                     time.sleep(1)
                     you_sound.play(0)
-                    time.sleep(1)
+                    time.sleep(0.7)
                     win_sound.play(0)
         else:
             if winb == 1 or winc == 1:
@@ -295,7 +295,7 @@ def main():
                 c_sound += 1
                 time.sleep(1)
                 you_sound.play(0)
-                time.sleep(1)
+                time.sleep(0.7)
                 lose_sound.play(0)
             else:
                 screen.blit(win.image, win.rect)
@@ -304,7 +304,7 @@ def main():
                     c_sound += 1
                     time.sleep(1)
                     you_sound.play(0)
-                    time.sleep(1)
+                    time.sleep(0.7)
                     win_sound.play(0)
         pygame.display.flip()
 
