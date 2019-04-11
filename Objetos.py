@@ -56,3 +56,11 @@ class wall(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.rect = pygame.Rect(x, y, 16, 16)
         self.image = pygame.image.load("images\\bloco3.png")
+
+class wallt(pygame.sprite.Sprite):
+
+    def __init__(self, x, y):
+        # Call the parent class (Sprite) constructor
+        pygame.sprite.Sprite.__init__(self)
+        self.rect = pygame.Rect(x, y, 16, 16)
+        self.image = pygame.image.load("images\\bloco2.png")
